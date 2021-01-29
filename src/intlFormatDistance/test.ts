@@ -175,6 +175,42 @@ describe('intlFormatDistance', function () {
 });
 
 describe('intlFormatDistance edge cases', () => {
-  //
+  it("throws Range Error if the date isnt valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(NaN), new Date(1986, 3, 4, 10, 30, 0)), RangeError);
+  });
+
+  it("throws Range Error if the base date isnt valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(NaN)), RangeError);
+  });
+
+  it("throws Range Error if both dates aren't valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(NaN), new Date(NaN)), RangeError);
+  });
+
+  it("throws Range Error if unit is not valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(1986, 3, 4, 10, 30, 0), {unit:'wrongValue'}), RangeError);
+  });
+
+  it("throws Range Error if locales is not valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(1986, 3, 4, 10, 30, 0), {locales:'wrongValue'}), RangeError);
+  });
+
+  it("throws Range Error if locales is not valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(1986, 3, 4, 10, 30, 0), {options:{'localeMatcher':'wrongValue'}}), RangeError);
+  });
+
+  it("throws Range Error if locales is not valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(1986, 3, 4, 10, 30, 0), {options:{'numeric':'wrongValue'}}), RangeError);
+  });
+
+  it("throws Range Error if locales is not valid", () => {
+    assert.throws(intlFormatDistance.bind(null, new Date(1986, 3, 4, 10, 30, 0), new Date(1986, 3, 4, 10, 30, 0), {options:{'style':'wrongValue'}}), RangeError);
+  });
+
+  it('handles dates before 100 AD and prints out in 60 minutes', function () {
+    const result = intlFormatDistance(new Date(1, 3, 4, 11, 30, 0),
+      new Date(1, 3, 4, 10, 30, 0), {unit: 'minute'});
+    assert(result === 'in 60 minutes');
+  });
 });
 
