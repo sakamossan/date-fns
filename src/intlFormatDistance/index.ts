@@ -39,8 +39,7 @@ const SECONDS_IN_YEAR = 31104000; // 12 months in year
  * @param {Date|Number} baseDate - the date to compare with.
  * @param {Object} [rtfOptions] - an object with options.
  * @param {String} [rtfOptions.unit] - formats the distance with the given unit ("year", "quarter", "month", "week", "day", "hour", "minute", "second").
- * @param {String|String[]} [rtfOptions.locales='en'] - a string (or array of strings) with a BCP 47 language tag. For reference see:
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation
+ * @param {String|String[]} [rtfOptions.locales] - the locale to use (BCP 47 language tag). [For the reference see MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation).
  * @param {String} [rtfOptions.options.localeMatcher='best fit'] - the locale matching algorithm to use. Other value: "lookup".
  * @param {String} [rtfOptions.options.numeric='always'] - the output message format. Other value: "auto".
  * @param {String} [rtfOptions.options.style='long'] - the length of the internationalized message. Other values: "short" or "narrow";
