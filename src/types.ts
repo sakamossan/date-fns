@@ -61,4 +61,12 @@ export interface RoundingOptions {
   roundingMethod?: RoundingMethod
 }
 
-export type Unit = 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+export type Unit =
+  | 'year'
+  | 'quarter'
+  | 'month'
+  | 'week'
+  | 'day'
+  | 'hour'
+  | 'minute'
+  | 'second'
