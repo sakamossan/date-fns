@@ -71,16 +71,12 @@ const SECONDS_IN_YEAR = 31104000; // 12 months in year
  */
 
 // This type mimics the 'options' parameter of Intl.RelativeTimeFormat
-type IrtfOptions = {
-  localeMatcher?: String,
-  numeric?: String,
-  style?: String,
-};
-
-type Options = {
-  unit?: String,
-  locales?: String;
-  options?: IrtfOptions;
+interface Options {
+  localeMatcher?: Intl.RelativeTimeFormatLocaleMatcher,
+  numeric?: Intl.RelativeTimeFormatNumeric,
+  style?: Intl.RelativeTimeFormatStyle,
+  unit?: Unit,
+  locale?: Intl.RelativeTimeFormatStyle
 }
 
 export default function intlFormatDistance(date: Date | number, baseDate: Date | number, rtfOptions?: Options): String {
