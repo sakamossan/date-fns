@@ -21,13 +21,12 @@ import { Unit } from '../types'
  * depending on the distance (the less the distance the smaller the unit),
  * or allowes a user to pass in a unit as well.
  *
- * | Distance between dates, no unit passed in                         | Result              |
+ * | Distance between dates                                            | Result              |
  * |-------------------------------------------------------------------|---------------------|
  * | 1 second                                                          | in 1 seconds        |
  * | n seconds                                                         | in n seconds        |
  * | 1 m                                                               | in 1 minute         |
- * | -1 second                                                         | 1 second ago        |
- *
+ * | 1 m                                                               | in 60 seconds       |
  *
  * @param {Date|Number} date - the date
  * @param {Date|Number} baseDate - the date to compare with.
