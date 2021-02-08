@@ -11,6 +11,14 @@ import differenceInYears from '../differenceInYears/index'
 import { yearInDays } from '../constants/index'
 import { Unit } from '../types'
 
+const secondsInMinute = 60
+const secondsInHour = 60 * secondsInMinute
+const secondsInDay = secondsInHour * 24
+const secondsInWeek = secondsInDay * 7
+const secondsInYear = secondsInDay * yearInDays
+const secondsInMonth = secondsInYear / 12
+const secondsInQuarter = secondsInMonth * 3
+
 /**
  * @name intlFormatDistance
  * @category Common Helpers
@@ -21,12 +29,60 @@ import { Unit } from '../types'
  * depending on the distance (the less the distance the smaller the unit),
  * or allowes a user to pass in a unit as well.
  *
- * | Distance between dates                                            | Result              |
- * |-------------------------------------------------------------------|---------------------|
- * | 1 second                                                          | in 1 seconds        |
- * | n seconds                                                         | in n seconds        |
- * | 1 m                                                               | in 1 minute         |
- * | 1 m                                                               | in 60 seconds       |
+ * | Distance between dates       | Result              |
+ * |------------------------------|---------------------|
+ * |   1 second                   | in 1 seconds        |
+ * |   n seconds                  | in n seconds        |
+ * |   1 minute                   | in 1 minute         |
+ * |   n minutes                  | in n minutes        |
+ * |   1 hour                     | in 1 hour           |
+ * |   n hours                    | in n hours          |
+ * |   1 day                      | in 1 day            |
+ * |   n days                     | in n days           |
+ * |   1 week                     | in 1 week           |
+ * |   n weeks                    | in n weeks          |
+ * |   1 month                    | in 1 month          |
+ * |   n months                   | in n months         |
+ * |   1 quarter                  | in 1 quarter        |
+ * |   n quarters                 | in n quarters       |
+ * |   1 year                     | in 1 year           |
+ * |   n years                    | in n years          |
+ *
+ *
+ *  With `options.unit = 'hour'`
+ * | Distance between dates | Result               |
+ * |------------------------|----------------------|
+ * | 1 day                  | in 24 hours          |
+ * | 1 week                 | in 168 hours         |
+ *
+ *
+ *  With `options.locale = 'de'`
+ * | Distance between dates | Result               |
+ * |------------------------|----------------------|
+ * | 1 day                  | in 1 Tag             |
+ * | 1 week                 | in 1 Woche           |
+ *
+ *
+ *  With `options.numeric: 'auto' `
+ * | Distance between dates | Result               |
+ * |------------------------|----------------------|
+ * | 0 seconds              | now                  |
+ * | 1 day                  | tomorrow             |
+ *
+ *
+ *
+ * | Other Options     | Possible values         |  Result            |
+ * |-------------------|-------------------------|--------------------|
+ * | localeMatcher     | 'lookup' and 'best fit' | N/A                |
+ * |                   |                         |                    |
+ * | numeric           | 'always'                | 1 day ago          |
+ * |                   | 'auto'                  | yesterday          |
+ * |                   |                         |                    |
+ * | style             | 'long'                  | in 1 month         |
+ * |                   | 'short'                 | in 1 mo.           |
+ * |                   | 'narrow'                | in 1 mo.           |
+ *
+ *
  *
  * @param {Date|Number} date - the date
  * @param {Date|Number} baseDate - the date to compare with.
@@ -36,6 +92,15 @@ import { Unit } from '../types'
  * @param {String} [options.localeMatcher='best fit'] - the locale matching algorithm to use. Other value: "lookup".
  * @param {String} [options.numeric='always'] - the output message format. Other value: "auto".
  * @param {String} [options.style='long'] - the length of the internationalized message. Other values: "short" or "narrow";
+ * @returns {String} the distance in words according to language-sensitive relative time formatting.
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `date` must not be Invalid Date
+ * @throws {RangeError} `baseDate` must not be Invalid Date
+ * @throws {RangeError} `options.unit` must not be invalid Unit
+ * @throws {RangeError} `options.locale` must not be invalid locale
+ * @throws {RangeError} `options.localeMatcher=` must not be invalid localeMatcher
+ * @throws {RangeError} `options.numeric=` must not be invalid numeric
+ * @throws {RangeError} `options.style=` must not be invalid style
  *
  * @example
  * // What is the distance between Apr, 4 1986 11:30:00 and Apr, 4 1986 10:30:00 in Intl?
@@ -123,17 +188,6 @@ import { Unit } from '../types'
  *   { unit: 'minute', locales: 'de' });
  * // => in 60 Minuten
  *
- * | Other Options     | Possible values         |  Result            |
- * |-------------------|-------------------------|--------------------|
- * | localeMatcher     | 'lookup' and 'best fit' | N/A                |
- * |                   |                         |                    |
- * | numeric           | 'always'                | 1 day ago          |
- * |                   | 'auto'                  | yesterday          |
- * |                   |                         |                    |
- * | style             | 'long'                  | in 1 month         |
- * |                   | 'short'                 | in 1 mo.           |
- * |                   | 'narrow'                | in 1 mo.           |
- *
  */
 
 interface Options {
@@ -153,14 +207,6 @@ export default function intlFormatDistance(
 
   let value
   let unit
-
-  let secondsInMinute = 60
-  let secondsInHour = 60 * secondsInMinute
-  let secondsInDay = secondsInHour * 24
-  let secondsInWeek = secondsInDay * 7
-  let secondsInYear = secondsInDay * yearInDays
-  let secondsInMonth = secondsInYear / 12
-  let secondsInQuarter = secondsInMonth * 3
 
   if (!options?.unit) {
     // Get the unit based on diffInSeconds calculations if no unit passed in

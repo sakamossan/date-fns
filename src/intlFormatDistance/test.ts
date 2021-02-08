@@ -350,7 +350,7 @@ describe('intlFormatDistance', function () {
 
     it('throws Range Error if unit is not valid', () => {
       assert.throws(
-        // @ts-ignore: the value doesnt match onre of the Unit values from '../types.ts'
+        // @ts-ignore: the value doesnt match one of the Unit values from '../types.ts'
         intlFormatDistance.bind(
           null,
           new Date(1986, 3, 4, 10, 30, 0),
@@ -361,7 +361,7 @@ describe('intlFormatDistance', function () {
       )
     })
 
-    it('throws Range Error if locales is not valid', () => {
+    it('throws Range Error if locale is not valid', () => {
       assert.throws(
         intlFormatDistance.bind(
           null,
@@ -373,7 +373,7 @@ describe('intlFormatDistance', function () {
       )
     })
 
-    it('throws Range Error if locales is not valid', () => {
+    it('throws Range Error if localeMatcher is not valid', () => {
       assert.throws(
         intlFormatDistance.bind(
           null,
@@ -385,7 +385,7 @@ describe('intlFormatDistance', function () {
       )
     })
 
-    it('throws Range Error if locales is not valid', () => {
+    it('throws Range Error if numeric is not valid', () => {
       assert.throws(
         intlFormatDistance.bind(
           null,
@@ -397,7 +397,7 @@ describe('intlFormatDistance', function () {
       )
     })
 
-    it('throws Range Error if locales is not valid', () => {
+    it('throws Range Error if style is not valid', () => {
       assert.throws(
         intlFormatDistance.bind(
           null,
