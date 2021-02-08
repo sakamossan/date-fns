@@ -1,4 +1,4 @@
-# Algerian Arabic (ar-DZ) locale
+# Modern Standard Arabic (Algeria) [ar-dz] (ar-DZ) locale
 
 ## `format` and `parse`
 
