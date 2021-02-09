@@ -267,14 +267,12 @@ export default function intlFormatDistance(
     }
   }
 
-  const rtf = new Intl.RelativeTimeFormat(
+  return new Intl.RelativeTimeFormat(
     options?.locale || defaultLocale,
     {
       localeMatcher: options?.localeMatcher,
       numeric: options?.numeric,
       style: options?.style,
     } || {}
-  )
-
-  return rtf.format(value, unit)
+  ).format(value, unit)
 }
