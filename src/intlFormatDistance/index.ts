@@ -8,14 +8,14 @@ import differenceInWeeks from '../differenceInWeeks/index'
 import differenceInMonths from '../differenceInMonths/index'
 import differenceInQuarters from '../differenceInQuarters/index'
 import differenceInYears from '../differenceInYears/index'
-import { yearInDays } from '../constants/index'
+import { daysInYear } from '../constants/index'
 import { Unit } from '../types'
 
 const secondsInMinute = 60
 const secondsInHour = 60 * secondsInMinute
 const secondsInDay = secondsInHour * 24
 const secondsInWeek = secondsInDay * 7
-const secondsInYear = secondsInDay * yearInDays
+const secondsInYear = secondsInDay * daysInYear
 const secondsInMonth = secondsInYear / 12
 const secondsInQuarter = secondsInMonth * 3
 
@@ -28,6 +28,7 @@ const secondsInQuarter = secondsInMonth * 3
  * The API gets a difference between two gived dates and either picks the most appropriate unit
  * depending on the distance (the less the distance the smaller the unit),
  * or allowes a user to pass in a unit as well.
+ * If a unit is passed in it will be applied accordingly. Otherwise - see the table below:
  *
  * | Distance between dates       | Result              |
  * |------------------------------|---------------------|
