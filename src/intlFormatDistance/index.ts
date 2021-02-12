@@ -8,6 +8,7 @@ import differenceInWeeks from '../differenceInWeeks/index'
 import differenceInMonths from '../differenceInMonths/index'
 import differenceInQuarters from '../differenceInQuarters/index'
 import differenceInYears from '../differenceInYears/index'
+import toDate from '../toDate/index'
 import { daysInYear } from '../constants/index'
 import { Unit } from '../types'
 
@@ -208,62 +209,63 @@ export default function intlFormatDistance(
 
   let value
   let unit
+  let dateLeft = toDate(date)
+  let dateRight = toDate(baseDate)
 
   if (!options?.unit) {
     // Get the unit based on diffInSeconds calculations if no unit passed in
-    const diffInSeconds = differenceInSeconds(date, baseDate) // The smallest unit
+    const diffInSeconds = differenceInSeconds(dateLeft, dateRight) // The smallest unit
 
     if (Math.abs(diffInSeconds) < secondsInMinute) {
-      value = differenceInSeconds(date, baseDate)
+      value = differenceInSeconds(dateLeft, dateRight)
       unit = 'second'
     } else if (Math.abs(diffInSeconds) < secondsInHour) {
-      value = differenceInMinutes(date, baseDate)
+      value = differenceInMinutes(dateLeft, dateRight)
       unit = 'minute'
     } else if (Math.abs(diffInSeconds) < secondsInDay) {
-      value = differenceInHours(date, baseDate)
+      value = differenceInHours(dateLeft, dateRight)
       unit = 'hour'
     } else if (Math.abs(diffInSeconds) < secondsInWeek) {
-      value = differenceInDays(date, baseDate)
+      value = differenceInDays(dateLeft, dateRight)
       unit = 'day'
     } else if (Math.abs(diffInSeconds) < secondsInMonth) {
-      value = differenceInWeeks(date, baseDate)
+      value = differenceInWeeks(dateLeft, dateRight)
       unit = 'week'
-      console.log('222', value)
     } else if (Math.abs(diffInSeconds) < secondsInQuarter) {
-      value = differenceInMonths(date, baseDate)
+      value = differenceInMonths(dateLeft, dateRight)
       unit = 'month'
     } else if (Math.abs(diffInSeconds) < secondsInYear) {
-      if (differenceInQuarters(date, baseDate) < 4) {
+      if (differenceInQuarters(dateLeft, dateRight) < 4) {
         // To filter out cases that are less than a year but match 4 quarters
-        value = differenceInQuarters(date, baseDate)
+        value = differenceInQuarters(dateLeft, dateRight)
         unit = 'quarter'
       } else {
-        value = differenceInYears(date, baseDate)
+        value = differenceInYears(dateLeft, dateRight)
         unit = 'year'
       }
     } else {
-      value = differenceInYears(date, baseDate)
+      value = differenceInYears(dateLeft, dateRight)
       unit = 'year'
     }
   } else {
     // Get the value if unit has been passed in
     unit = options?.unit
     if (unit === 'second') {
-      value = differenceInSeconds(date, baseDate)
+      value = differenceInSeconds(dateLeft, dateRight)
     } else if (unit === 'minute') {
-      value = differenceInMinutes(date, baseDate)
+      value = differenceInMinutes(dateLeft, dateRight)
     } else if (unit === 'hour') {
-      value = differenceInHours(date, baseDate)
+      value = differenceInHours(dateLeft, dateRight)
     } else if (unit === 'day') {
-      value = differenceInDays(date, baseDate)
+      value = differenceInDays(dateLeft, dateRight)
     } else if (unit === 'week') {
-      value = differenceInWeeks(date, baseDate)
+      value = differenceInWeeks(dateLeft, dateRight)
     } else if (unit === 'month') {
-      value = differenceInMonths(date, baseDate)
+      value = differenceInMonths(dateLeft, dateRight)
     } else if (unit === 'quarter') {
-      value = differenceInQuarters(date, baseDate)
+      value = differenceInQuarters(dateLeft, dateRight)
     } else if (unit === 'year') {
-      value = differenceInYears(date, baseDate)
+      value = differenceInYears(dateLeft, dateRight)
     }
   }
 
