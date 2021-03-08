@@ -207,8 +207,8 @@ export default function intlFormatDistance(
 ): String {
   requiredArgs(2, arguments)
 
-  let value
-  let unit
+  let value: number
+  let unit: Intl.RelativeTimeFormatUnit
   let dateLeft = toDate(date)
   let dateRight = toDate(baseDate)
 
