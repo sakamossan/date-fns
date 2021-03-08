@@ -109,7 +109,7 @@ const secondsInQuarter = secondsInMonth * 3
  * const result = intlFormatDistance(
  *   new Date(1986, 3, 4, 11, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0));
- * // => in 1 hour
+ * //=> 'in 1 hour'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in Intl?
