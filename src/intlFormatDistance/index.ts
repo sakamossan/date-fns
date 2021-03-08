@@ -26,10 +26,10 @@ const secondsInQuarter = secondsInMonth * 3
  * @summary Enables language-sensitive relative time formatting according to the locale and formatting options
  * of the given Intl.RelativeTimeFormat object.
  * @description
- * The API gets a difference between two gived dates and either picks the most appropriate unit
+ * The API gets a difference between two given dates and either picks the most appropriate unit
  * depending on the distance (the less the distance the smaller the unit),
- * or allowes a user to pass in a unit as well.
- * If a unit is passed in it will be applied accordingly. Otherwise - see the table below:
+ * or allows a user to pass in a unit as well.
+ * If a unit is passed in, it will be applied accordingly. Otherwise - see the table below:
  *
  * | Distance between dates       | Result              |
  * |------------------------------|---------------------|
@@ -72,7 +72,6 @@ const secondsInQuarter = secondsInMonth * 3
  * | 1 day                  | tomorrow             |
  *
  *
- *
  * | Other Options     | Possible values         |  Result            |
  * |-------------------|-------------------------|--------------------|
  * | localeMatcher     | 'lookup' and 'best fit' | N/A                |
@@ -84,112 +83,120 @@ const secondsInQuarter = secondsInMonth * 3
  * |                   | 'short'                 | in 1 mo.           |
  * |                   | 'narrow'                | in 1 mo.           |
  *
- *
- *
- * @param {Date|Number} date - the date
- * @param {Date|Number} baseDate - the date to compare with.
- * @param {Object} [options] - an object with options.
- * @param {String} [options.unit] - formats the distance with the given unit ('year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second').
- * @param {String|String[]} [options.locale] - the locale to use (BCP 47 language tag). [For the reference see MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation).
- * @param {String} [options.localeMatcher='best fit'] - the locale matching algorithm to use. Other value: "lookup".
- * @param {String} [options.numeric='always'] - the output message format. Other value: "auto".
- * @param {String} [options.style='long'] - the length of the internationalized message. Other values: "short" or "narrow";
+ * @param {Date|Number} date the date
+ * @param {Date|Number} baseDate the date to compare with.
+ * @param {Object} [options] an object with options.
+ * @param {String} [options.unit] formats the distance with the given unit ('year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second').
+ * @param {String|String[]} [options.locale] the locale to use (BCP 47 language tag). [For the reference see MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation).
+ * @param {String} [options.localeMatcher='best fit'] the locale matching algorithm to use. Other value: "lookup".
+ * @param {String} [options.numeric='always'] the output message format. Other value: "auto".
+ * @param {String} [options.style='long'] the length of the internationalized message. Other values: "short" or "narrow";
  * @returns {String} the distance in words according to language-sensitive relative time formatting.
  * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `date` must not be Invalid Date
  * @throws {RangeError} `baseDate` must not be Invalid Date
  * @throws {RangeError} `options.unit` must not be invalid Unit
  * @throws {RangeError} `options.locale` must not be invalid locale
- * @throws {RangeError} `options.localeMatcher=` must not be invalid localeMatcher
- * @throws {RangeError} `options.numeric=` must not be invalid numeric
- * @throws {RangeError} `options.style=` must not be invalid style
+ * @throws {RangeError} `options.localeMatcher` must not be invalid localeMatcher
+ * @throws {RangeError} `options.numeric` must not be invalid numeric
+ * @throws {RangeError} `options.style` must not be invalid style
  *
  * @example
  * // What is the distance between Apr, 4 1986 11:30:00 and Apr, 4 1986 10:30:00 in Intl?
  * const result = intlFormatDistance(
  *   new Date(1986, 3, 4, 11, 30, 0),
- *   new Date(1986, 3, 4, 10, 30, 0));
+ *   new Date(1986, 3, 4, 10, 30, 0)
+ * )
  * //=> 'in 1 hour'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
- *   new Date(1986, 3, 4, 10, 30, 0));
- * // => in 1 year
+ *   new Date(1986, 3, 4, 10, 30, 0)
+ * )
+ * //=> 'in 1 year'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in quarters in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'quarter'});
- * // => in 4 quarters
+ *   { unit: 'quarter'}
+ * )
+ * //=> 'in 4 quarters'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in months in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'month'});
- * // => in 12 months
+ *   { unit: 'month'}
+ * )
+ * //=> 'in 12 months'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in weeks in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'week'});
- * // => in 52 weeks
+ *   { unit: 'week'}
+ * )
+ * //=> 'in 52 weeks'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in days in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'day'});
- * // => in 365 days
+ *   { unit: 'day'}
+ * )
+ * //=> 'in 365 days'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in hours in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'hour'});
- * // => in 8,760 hours
+ *   { unit: 'hour'}
+ * )
+ * //=> 'in 8,760 hours'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in minutes in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'minute'});
- * // => in 525,600 minutes
+ *   { unit: 'minute'}
+ * )
+ * //=> 'in 525,600 minutes'
  *
  * @example
  * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in seconds in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'second'});
- * // in 31,536,000 seconds
+ *   { unit: 'second'}
+ * )
+ * //=> 'in 31,536,000 seconds'
  *
  * @example
  * // What is the distance between Apr, 4 1986 11:30:00 and Apr, 4 1986 10:30:00 in minutes in Spanish in Intl?
  * const result = intlFormatDistance(
  *   new Date(1986, 3, 4, 11, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'minute', locale: 'es' });
- * // => dentro de 60 minutos
+ *   { unit: 'minute', locale: 'es' }
+ * )
+ * //=> 'dentro de 60 minutos'
  *
  * @example
  * // What is the distance between Apr, 4 1986 11:30:00 and Apr, 4 1986 10:30:00 in minutes in German in Intl?
  * const result = intlFormatDistance(
  *   new Date(1986, 3, 4, 11, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'minute', locale: 'de' });
- * // => in 60 Minuten
- *
+ *   { unit: 'minute', locale: 'de' }
+ * )
+ * //=> 'in 60 Minuten'
  */
 
 interface Options {
