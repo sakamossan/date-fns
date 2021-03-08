@@ -187,7 +187,7 @@ const secondsInQuarter = secondsInMonth * 3
  * const result = intlFormatDistance(
  *   new Date(1986, 3, 4, 11, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'minute', locales: 'de' });
+ *   { unit: 'minute', locale: 'de' });
  * // => in 60 Minuten
  *
  */
