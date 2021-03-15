@@ -83,14 +83,14 @@ const secondsInQuarter = secondsInMonth * 3
  * |                   | 'short'                 | in 1 mo.           |
  * |                   | 'narrow'                | in 1 mo.           |
  *
- * @param {Date|Number} date the date
- * @param {Date|Number} baseDate the date to compare with.
- * @param {Object} [options] an object with options.
- * @param {String} [options.unit] formats the distance with the given unit ('year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second').
- * @param {String|String[]} [options.locale] the locale to use (BCP 47 language tag). [For the reference see MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation).
- * @param {String} [options.localeMatcher='best fit'] the locale matching algorithm to use. Other value: "lookup".
- * @param {String} [options.numeric='always'] the output message format. Other value: "auto".
- * @param {String} [options.style='long'] the length of the internationalized message. Other values: "short" or "narrow";
+ * @param {Date|Number} date - the date
+ * @param {Date|Number} baseDate - the date to compare with.
+ * @param {Object} [options] - an object with options.
+ * @param {String} [options.unit] - formats the distance with the given unit ('year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second').
+ * @param {String|String[]} [options.locale] - the locale to use (BCP 47 language tag). [For the reference see MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation).
+ * @param {String} [options.localeMatcher='best fit'] - the locale matching algorithm to use. Other value: "lookup".
+ * @param {String} [options.numeric='always'] - the output message format. Other value: "auto".
+ * @param {String} [options.style='long'] - the length of the internationalized message. Other values: "short" or "narrow";
  * @returns {String} the distance in words according to language-sensitive relative time formatting.
  * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `date` must not be Invalid Date
@@ -110,7 +110,7 @@ const secondsInQuarter = secondsInMonth * 3
  * //=> 'in 1 hour'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0)
@@ -118,65 +118,65 @@ const secondsInQuarter = secondsInMonth * 3
  * //=> 'in 1 year'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in quarters in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in quarters in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'quarter'}
+ *   { unit: 'quarter' }
  * )
  * //=> 'in 4 quarters'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in months in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in months in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'month'}
+ *   { unit: 'month' }
  * )
  * //=> 'in 12 months'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in weeks in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in weeks in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'week'}
+ *   { unit: 'week' }
  * )
  * //=> 'in 52 weeks'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in days in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in days in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'day'}
+ *   { unit: 'day' }
  * )
  * //=> 'in 365 days'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in hours in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in hours in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'hour'}
+ *   { unit: 'hour' }
  * )
  * //=> 'in 8,760 hours'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in minutes in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in minutes in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'minute'}
+ *   { unit: 'minute' }
  * )
  * //=> 'in 525,600 minutes'
  *
  * @example
- * What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in seconds in Intl?
+ * // What is the distance between Apr, 4 1987 10:30:00 and Apr, 4 1986 10:30:00 in seconds in Intl?
  * const result = intlFormatDistance(
  *   new Date(1987, 3, 4, 10, 30, 0),
  *   new Date(1986, 3, 4, 10, 30, 0),
- *   { unit: 'second'}
+ *   { unit: 'second' }
  * )
  * //=> 'in 31,536,000 seconds'
  *
@@ -198,7 +198,6 @@ const secondsInQuarter = secondsInMonth * 3
  * )
  * //=> 'in 60 Minuten'
  */
-
 interface Options {
   unit?: Unit
   locale?: Intl.RelativeTimeFormatStyle
@@ -214,7 +213,7 @@ export default function intlFormatDistance(
 ): String {
   requiredArgs(2, arguments)
 
-  let value: number
+  let value: number = 0
   let unit: Intl.RelativeTimeFormatUnit
   let dateLeft = toDate(date)
   let dateRight = toDate(baseDate)
