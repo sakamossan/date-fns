@@ -295,7 +295,7 @@ describe('intlFormatDistance', function () {
     assert(result === 'tomorrow')
   })
 
-  it('prints next', function () {
+  it('prints next mo', function () {
     const result = intlFormatDistance(
       new Date(1985, 5, 4, 10, 30, 0),
       new Date(1985, 4, 4, 10, 30, 0),
