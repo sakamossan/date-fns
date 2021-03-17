@@ -209,7 +209,7 @@ interface Options {
 export default function intlFormatDistance(
   date: Date | number,
   baseDate: Date | number,
-  options?: Options
+  options: Options = { numeric: 'auto' }
 ): String {
   requiredArgs(2, arguments)
 
