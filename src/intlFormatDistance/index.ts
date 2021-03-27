@@ -279,7 +279,7 @@ export default function intlFormatDistance(
     options?.locale || defaultLocale,
     {
       localeMatcher: options?.localeMatcher,
-      numeric: options?.numeric,
+      numeric: options?.numeric || 'auto',
       style: options?.style,
     } || {}
   )
