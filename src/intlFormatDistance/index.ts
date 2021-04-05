@@ -33,7 +33,7 @@ const secondsInQuarter = secondsInMonth * 3
  *
  * | Distance between dates       | Result              |
  * |------------------------------|---------------------|
- * |   1 second                   | in 1 seconds        |
+ * |   1 second                   | in 1 second         |
  * |   n seconds                  | in n seconds        |
  * |   1 minute                   | in 1 minute         |
  * |   n minutes                  | in n minutes        |
@@ -72,7 +72,7 @@ const secondsInQuarter = secondsInMonth * 3
  * | 1 day                  | tomorrow             |
  *
  *
- * | Other Options     | Possible values         |  Result            |
+ * | Other options     | Possible values         |  Result            |
  * |-------------------|-------------------------|--------------------|
  * | localeMatcher     | 'lookup' and 'best fit' | N/A                |
  * |                   |                         |                    |
