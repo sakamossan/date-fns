@@ -1,4 +1,5 @@
 import requiredArgs from '../_lib/requiredArgs/index'
+import defaultLocale from '../locale/en-US/index'
 import differenceInSeconds from '../differenceInSeconds/index'
 import differenceInMinutes from '../differenceInMinutes/index'
 import differenceInHours from '../differenceInHours/index'
@@ -275,7 +276,7 @@ export default function intlFormatDistance(
   }
 
   const rtf = new Intl.RelativeTimeFormat(
-    options?.locale || 'en',
+    options?.locale || defaultLocale,
     {
       localeMatcher: options?.localeMatcher,
       numeric: options?.numeric || 'auto',

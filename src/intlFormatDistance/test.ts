@@ -296,22 +296,22 @@ describe('intlFormatDistance', function () {
     assert(result === 'tomorrow')
   })
 
-  it('prints `next mo.`', function () {
+  it('prints `next mo`', function () {
     const result = intlFormatDistance(
       new Date(1985, 5, 4, 10, 30, 0),
       new Date(1985, 4, 4, 10, 30, 0),
       { style: 'short', numeric: 'auto' }
     )
-    assert(result === 'next mo.')
+    assert(result === 'next mo')
   })
 
-  it('prints `next yr.`', function () {
+  it('prints `next yr`', function () {
     const result = intlFormatDistance(
       new Date(1986, 4, 5, 10, 30, 0),
       new Date(1985, 4, 5, 10, 30, 0),
       { style: 'short', numeric: 'auto' }
     )
-    assert(result === 'next yr.')
+    assert(result === 'next yr')
   })
 
   // Same dates
