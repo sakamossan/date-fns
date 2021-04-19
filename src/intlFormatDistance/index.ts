@@ -199,8 +199,8 @@ const secondsInQuarter = secondsInMonth * 3
  */
 interface Options {
   unit?: Unit
-  locale?: Intl.ResolvedDateTimeFormatOptions['locale']
-  localeMatcher?: Intl.DateTimeFormatOptions['localeMatcher']
+  locale?: Intl.BCP47LanguageTag
+  localeMatcher?: Intl.RelativeTimeFormatLocaleMatcher
   numeric?: Intl.RelativeTimeFormatNumeric
   style?: Intl.RelativeTimeFormatStyle
 }
