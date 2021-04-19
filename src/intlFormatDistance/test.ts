@@ -261,11 +261,9 @@ describe('intlFormatDistance', function () {
     const result = intlFormatDistance(
       new Date(1986, 4, 4, 10, 30, 0),
       new Date(1985, 4, 4, 10, 30, 0),
-      {
-        numeric: 'always',
-      }
+      { numeric: 'always' }
     )
-    assert(result === 'in 1 year') //
+    assert(result === 'in 1 year')
   })
 
   it('prints out `next year`', function () {
@@ -490,6 +488,7 @@ describe('intlFormatDistance', function () {
 
     it('throws Range Error if localeMatcher is not valid', () => {
       assert.throws(
+        // @ts-expect-error
         intlFormatDistance.bind(
           null,
           new Date(1986, 3, 4, 10, 30, 0),
@@ -502,6 +501,7 @@ describe('intlFormatDistance', function () {
 
     it('throws Range Error if numeric is not valid', () => {
       assert.throws(
+        // @ts-expect-error
         intlFormatDistance.bind(
           null,
           new Date(1986, 3, 4, 10, 30, 0),
@@ -514,6 +514,7 @@ describe('intlFormatDistance', function () {
 
     it('throws Range Error if style is not valid', () => {
       assert.throws(
+        // @ts-expect-error
         intlFormatDistance.bind(
           null,
           new Date(1986, 3, 4, 10, 30, 0),
