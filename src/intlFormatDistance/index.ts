@@ -2,11 +2,11 @@ import requiredArgs from '../_lib/requiredArgs/index'
 import differenceInSeconds from '../differenceInSeconds/index'
 import differenceInMinutes from '../differenceInMinutes/index'
 import differenceInHours from '../differenceInHours/index'
-import differenceInDays from '../differenceInDays/index'
-import differenceInWeeks from '../differenceInWeeks/index'
-import differenceInMonths from '../differenceInMonths/index'
-import differenceInQuarters from '../differenceInQuarters/index'
-import differenceInYears from '../differenceInYears/index'
+import differenceInCalendarDays from '../differenceInCalendarDays/index'
+import differenceInCalendarWeeks from '../differenceInCalendarWeeks/index'
+import differenceInCalendarMonths from '../differenceInCalendarMonths/index'
+import differenceInCalendarQuarters from '../differenceInCalendarQuarters/index'
+import differenceInCalendarYears from '../differenceInCalendarYears/index'
 import toDate from '../toDate/index'
 import { daysInYear } from '../constants/index'
 import { Unit } from '../types'
@@ -231,25 +231,25 @@ export default function intlFormatDistance(
       value = differenceInHours(dateLeft, dateRight)
       unit = 'hour'
     } else if (Math.abs(diffInSeconds) < secondsInWeek) {
-      value = differenceInDays(dateLeft, dateRight)
+      value = differenceInCalendarDays(dateLeft, dateRight)
       unit = 'day'
     } else if (Math.abs(diffInSeconds) < secondsInMonth) {
-      value = differenceInWeeks(dateLeft, dateRight)
+      value = differenceInCalendarWeeks(dateLeft, dateRight)
       unit = 'week'
     } else if (Math.abs(diffInSeconds) < secondsInQuarter) {
-      value = differenceInMonths(dateLeft, dateRight)
+      value = differenceInCalendarMonths(dateLeft, dateRight)
       unit = 'month'
     } else if (Math.abs(diffInSeconds) < secondsInYear) {
-      if (differenceInQuarters(dateLeft, dateRight) < 4) {
+      if (differenceInCalendarQuarters(dateLeft, dateRight) < 4) {
         // To filter out cases that are less than a year but match 4 quarters
-        value = differenceInQuarters(dateLeft, dateRight)
+        value = differenceInCalendarQuarters(dateLeft, dateRight)
         unit = 'quarter'
       } else {
-        value = differenceInYears(dateLeft, dateRight)
+        value = differenceInCalendarYears(dateLeft, dateRight)
         unit = 'year'
       }
     } else {
-      value = differenceInYears(dateLeft, dateRight)
+      value = differenceInCalendarYears(dateLeft, dateRight)
       unit = 'year'
     }
   } else {
@@ -262,15 +262,15 @@ export default function intlFormatDistance(
     } else if (unit === 'hour') {
       value = differenceInHours(dateLeft, dateRight)
     } else if (unit === 'day') {
-      value = differenceInDays(dateLeft, dateRight)
+      value = differenceInCalendarDays(dateLeft, dateRight)
     } else if (unit === 'week') {
-      value = differenceInWeeks(dateLeft, dateRight)
+      value = differenceInCalendarWeeks(dateLeft, dateRight)
     } else if (unit === 'month') {
-      value = differenceInMonths(dateLeft, dateRight)
+      value = differenceInCalendarMonths(dateLeft, dateRight)
     } else if (unit === 'quarter') {
-      value = differenceInQuarters(dateLeft, dateRight)
+      value = differenceInCalendarQuarters(dateLeft, dateRight)
     } else if (unit === 'year') {
-      value = differenceInYears(dateLeft, dateRight)
+      value = differenceInCalendarYears(dateLeft, dateRight)
     }
   }
 
