@@ -287,3 +287,7 @@ export interface NearestMinutesOptions {
   /** The nearest number of minutes to round to. E.g. `15` to round to quarter hours. */
   nearestTo?: NearestMinutes;
 }
+
+export interface NearestHoursOptions {
+  nearestTo?: number; // FIXME
+}
