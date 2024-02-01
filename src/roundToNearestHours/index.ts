@@ -43,8 +43,8 @@ export interface RoundToNearestHoursOptions
 
 * @example
  * // Floor (rounds down) 10 July 2014 12:34:56 to nearest hour:
- * const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { roundingMethod: 'ceil' })
- * //=> Thu Jul 10 2014 13:00:00
+ * const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), { roundingMethod: 'ceil' })
+ * //=> Thu Jul 10 2014 02:00:00
  *
  * @example
  * // Ceil (rounds up) 10 July 2014 12:34:56 to nearest quarter hour:
@@ -61,8 +61,8 @@ export function roundToNearestHours<DateType extends Date>(
 
   const _date = toDate(date);
   const fractionalMinutes = _date.getMinutes() / 60;
-  const fractionalSeconds = _date.getSeconds() / 60;
-  const fractionalMilliseconds = _date.getMilliseconds() / 1000 / 60;
+  const fractionalSeconds = _date.getSeconds() / 60 / 60;
+  const fractionalMilliseconds = _date.getMilliseconds() / 1000 / 60 / 60;
   const hours =
     _date.getHours() +
     fractionalMinutes +
@@ -73,6 +73,7 @@ export function roundToNearestHours<DateType extends Date>(
   const method = options?.roundingMethod ?? "round";
   const roundingMethod = getRoundingMethod(method);
 
+  // nearestTo option does not care daylight savings time
   const roundedHours = roundingMethod(hours / nearestTo) * nearestTo;
 
   const result = constructFrom(date, _date);
