@@ -1948,6 +1948,16 @@
         "default": "./quartersToYears.mjs"
       }
     },
+    "./roundToNearestHours": {
+      "require": {
+        "types": "./roundToNearestHours.d.ts",
+        "default": "./roundToNearestHours.js"
+      },
+      "import": {
+        "types": "./roundToNearestHours.d.mts",
+        "default": "./roundToNearestHours.mjs"
+      }
+    },
     "./roundToNearestMinutes": {
       "require": {
         "types": "./roundToNearestMinutes.d.ts",
@@ -5056,6 +5066,16 @@
       "import": {
         "types": "./fp/weeksToDays.d.mts",
         "default": "./fp/weeksToDays.mjs"
+      }
+    },
+    "./fp/yearsToDays": {
+      "require": {
+        "types": "./fp/yearsToDays.d.ts",
+        "default": "./fp/yearsToDays.js"
+      },
+      "import": {
+        "types": "./fp/yearsToDays.d.mts",
+        "default": "./fp/yearsToDays.mjs"
       }
     },
     "./fp/yearsToMonths": {
