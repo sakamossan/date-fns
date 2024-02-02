@@ -288,6 +288,12 @@ export interface NearestMinutesOptions {
   nearestTo?: NearestMinutes;
 }
 
+/**
+ * Nearest hour type. Goes from 1 to 12, where 1 is the nearest hour and 12
+ * is nearest half a day.
+ */
+export type NearestHours = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 export interface NearestHoursOptions {
-  nearestTo?: number; // FIXME
+  nearestTo?: NearestHours;
 }
